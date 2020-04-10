@@ -96,7 +96,7 @@ while introducción!="0" or introducción=="7":
         patrimonio_bruto=int(input("Ingrese el valor de su patrimonio bruto en el último año: "))
         costos_consumos=int(input("Ingrese el valor de sus compras y consumos totales en el último año: "))
         ingresos_brutos=int(input("Ingrese el valor de sus ingresos brutos en el último año: "))
-        consig_depos_inver=int(input("Ingrese el valor total entre consignaciones, depósitos o inversiones que haya hecho en el último años:"))
+        consig_depos_inver=int(input("Ingrese el valor total entre consignaciones, depósitos o inversiones que haya hecho en el último años: "))
         consumos_tc=int(input("Ingrese el valor en consumos con tarjeta de crédito en el último año: "))
 
 
@@ -185,7 +185,7 @@ while introducción!="0" or introducción=="7":
         print(interes,(cantidad, tasa))
         print("Recuerde que cada valor corresponde a cada año. Esto depende de los años ingresados aneriormente.")
         print("Al final de",n,"años, usted habrá pagado de intereses: " )
-
+        
         x=np.zeros(n)
         y=np.zeros(n)
 
