@@ -6,7 +6,8 @@ Created on Wed Apr  8 00:43:12 2020
 """
 from tkinter import *
 import tkinter as tk 
-
+from math import *
+import math as mt
 #===============================================================================================================================================================================================
 #                               Caracteristicas de la pagina 
 #===============================================================================================================================================================================================
@@ -49,14 +50,17 @@ def ventanaiva():
     calcular=tk.Button(win,text="Calcular",command=iva)
     calcular.pack(side=tk.TOP,padx=30,pady=30)
     calcular.configure(font=30)
-#                                   Ventana retencion
+#################################################################################################################################################################                                                                                                  
 def ventanaretencion():
     win = tk.Toplevel()
     win.geometry("700x700")
     win.configure(bg="lavender")
     win.iconbitmap(r'q5970meyn6ddojdz1wno81586489001_NEv_icon.ico')
-    e1 = tk.Label(win,text="Bienvenido al apartado para calcular su retencion de fuente",bg="royal blue",fg= "white",font = ("vernada", 15))
+    e1 = tk.Label(win,text="Bienvenido al apartado para calcular su retencion de fuente",bg="lavender",fg= "black",font = ("vernada", 15))
     e1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)
+    e10 = tk.Label(win,text="Acontinuación encontrará una serie de funcoines, escoja la que desea consultar",bg="royal blue",fg="white",font=15 )
+    e10.pack(padx = 5,pady=5,ipadx=5,ipady=5,fill=tk.X)
+
     def compras():
         win.destroy()
         win1 = tk.Toplevel()
@@ -166,7 +170,7 @@ def ventanaretencion():
     mb1.pack(padx=30,pady=30)
     mb1.configure(font=30)
     mb1.pack()
-    
+################################################################################################################################################################    
 def ventanarenta():
     win = tk.Toplevel()
     win.geometry("700x700")
@@ -204,7 +208,7 @@ def ventanarenta():
     calcular=tk.Button(win,text="Calcular",command=renta)
     calcular.configure(font=30)
     calcular.pack(side=tk.TOP,padx=30,pady=30)
-
+################################################################################################################################################################
 def ventanavalorFuturo():
     win = tk.Toplevel()
     win.geometry("700x700")
@@ -212,70 +216,186 @@ def ventanavalorFuturo():
     win.iconbitmap(r'q5970meyn6ddojdz1wno81586489001_NEv_icon.ico')
     e1 = tk.Label(win,text="Bienvenido al apartado para calcular el valor futuro",bg="lavender",fg= "black",font = ("vernada", 20))
     e1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)
+    c1=tk.IntVar()
+    c2=tk.IntVar()
+    c3=tk.IntVar()
     i1 = tk.Label(win,text="Ingrese la cantidad a solicitar de préstamo: ",bg="royal blue",fg= "white",font = ("vernada", 12))
     i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
-    e2=tk.Entry(win)
+    e2=tk.Entry(win,textvariable=c1)
     e2.pack(ipadx=5,ipady=5)
-    i1 = tk.Label(win,text="Ingrese la tasa de interés: ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1 = tk.Label(win,text="Ingrese la tasa de interés \n (digitela sin punto y añada un cero al final) \n ej: si es 2.3% Ingrese: 230 ",bg="royal blue",fg= "white",font = ("vernada", 12))
     i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
-    e3=tk.Entry(win)
+    e3=tk.Entry(win,textvariable=c2)
     e3.pack(ipadx=5,ipady=5)
-    i1 = tk.Label(win,text="Ingrese el tiempo a calcular en meses: ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1 = tk.Label(win,text="Ingrese el tiempo a calcular en años: ",bg="royal blue",fg= "white",font = ("vernada", 12))
     i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
-    e4=tk.Entry(win)
+    e4=tk.Entry(win,textvariable=c3)
     e4.pack(ipadx=5,ipady=5)
-    def v_futuros(e2,e3,e4):
-        vfuturo=int(e2.get())*(1+int(e3.get())**int(e4.get()))
-        e2=tk.Label(win,text="El valor futuro es de: ",bg="royal blue",fg= "black",font = ("vernada", 15))
-        e2.pack(padx = 5,pady=10,ipadx=5,ipady=10)
-        e3=tk.Label(win,text=vfuturo, padx = 5,pady=10,width=50)
-        e3.pack()
+    def v_futuros():
+        a = int(e2.get())
+        b = int(e3.get())
+        c = int(e4.get())
+        d=1
+        if len(e3.get())==1:
+            d=1
+        elif len(e3.get())==2:
+            d=10
+        else:
+            d=100
+        try:
+            h=(b/d)/100
+            interes_com= a*((1+h)**c)
+            e7=tk.Label(win,text="El valor futuro es de: ",bg="royal blue",fg= "black",font = ("vernada", 15))
+            e7.pack(padx = 5,pady=10,ipadx=5,ipady=10)
+            e8=tk.Label(win,text=(interes_com), padx = 5,pady=10,width=50)
+            e8.pack()
+        except:
+            tk.messagebox.showwarning("error","ingrese nuevamente los datos")
+            
     
-    calcular=tk.Button(win,text="Calcular",command=v_futuros(e2,e3,e4))
+    calcular=tk.Button(win,text="Calcular",command=v_futuros)
     calcular.pack(side=tk.TOP,padx=30,pady=30)
     calcular.configure(font=30)
-
+################################################################################################################################################################
 def ventanaCDT():
     win = tk.Toplevel()
     win.geometry("700x700")
     win.configure(bg="lavender")
     win.iconbitmap(r'q5970meyn6ddojdz1wno81586489001_NEv_icon.ico')
-    e1 = tk.Label(win,text="Bienvenido al apartado para calcular sus ganacias con un CDT",bg="lavender",fg= "black",font = ("vernada", 20))
+    e1 = tk.Label(win,text="Bienvenido al apartado para calcular sus ganacias con un CDT",bg="lavender",fg= "black",font = ("vernada", 15))
     e1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)
-    calcular=tk.Button(win,text="Calcular")
-    calcular.pack(side=tk.TOP)
-    
+    c1=tk.IntVar()
+    c2=tk.IntVar()
+    c3=tk.IntVar()
+    i1 = tk.Label(win,text="Ingrese valor futuro: ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
+    e2=tk.Entry(win,textvariable=c1)
+    e2.pack(ipadx=5,ipady=5)
+    i1 = tk.Label(win,text="Ingrese valor presente: ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
+    e3=tk.Entry(win,textvariable=c2)
+    e3.pack(ipadx=5,ipady=5)
+    i1 = tk.Label(win,text="Ingrese la tasa de interés \n (digitela sin punto y añada un cero al final) \n ej: si es 2.3% Ingrese: 230 ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
+    e4=tk.Entry(win,textvariable=c3)
+    e4.pack(ipadx=5,ipady=5)
+    def calculoT():
+        try:
+            a = int(e2.get())
+            b = int(e3.get())
+            c = int(e4.get())
+            d=1
+            if len(e4.get())==1:
+                d=1
+            elif len(e4.get())==2:
+                d=10
+            else:
+                d=100
+            c_tiempo=mt.log(a/b)/mt.log(1+(c/d))
+            e7=tk.Label(win,text="El tiempo es de: ",bg="royal blue",fg= "black",font = ("vernada", 15))
+            e7.pack(padx = 5,pady=10,ipadx=5,ipady=10)
+            e8=tk.Label(win,text=(c_tiempo,"Bimestres"), padx = 5,pady=10,width=50)
+            e8.pack()
+        except:
+            tk.messagebox.showwarning("error","ingrese nuevamente los datos")
+    calcular=tk.Button(win,text="Calcular",command=calculoT)
+    calcular.configure(font=30)
+    calcular.pack(side=tk.TOP,padx=30,pady=30)
+################################################################################################################################################################    
 def ventanaICredito():
     win = tk.Toplevel()
     win.geometry("700x700")
     win.configure(bg="lavender")
     win.iconbitmap(r'q5970meyn6ddojdz1wno81586489001_NEv_icon.ico')
-    e1 = tk.Label(win,text="Bienvenido al apartado para calcular los intereses de un credito",bg="lavender",fg= "black",font = ("vernada", 20))
+    e1 = tk.Label(win,text="Bienvenido al apartado para calcular los intereses de un credito",bg="lavender",fg= "black",font = ("vernada", 15))
     e1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)
-    calcular=tk.Button(win,text="Calcular")
-    calcular.pack(side=tk.TOP)
-    
+    c1=tk.IntVar()
+    c2=tk.IntVar()
+    c3=tk.IntVar()
+    i1 = tk.Label(win,text="Ingrese la cantidad a solicitar de préstamo: ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
+    e2=tk.Entry(win,textvariable=c1)
+    e2.pack(ipadx=5,ipady=5)
+    i1 = tk.Label(win,text="Ingrese la tasa de interés \n (digitela sin punto y añada un cero al final) \n ej: si es 2.3% Ingrese: 230 : ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
+    e3=tk.Entry(win,textvariable=c2)
+    e3.pack(ipadx=5,ipady=5)
+    i1 = tk.Label(win,text="Ingrese los años a calcular: ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
+    e4=tk.Entry(win,textvariable=c3)
+    e4.pack(ipadx=5,ipady=5)
+    def intereses():
+        a = int(e2.get())
+        b = int(e3.get())
+        c = int(e4.get())
+        d=1
+        if len(e3.get())==1:
+            d=1
+        elif len(e3.get())==2:
+            d=10
+        else:
+            d=100
+        h=(b/d)/100
+        interes_com= a*((1+h)**c)
+        e7=tk.Label(win,text="Tracurridos el tiempo que ingresó habra pagado en intereses: ",bg="royal blue",fg= "black",font = ("vernada", 15))
+        e7.pack(padx = 5,pady=10,ipadx=5,ipady=10)
+        e8=tk.Label(win,text=(interes_com), padx = 5,pady=10,width=50)
+        e8.pack()
+        
+    calcular=tk.Button(win,text="Calcular", command=intereses)
+    calcular.configure(font=30)
+    calcular.pack(side=tk.TOP,padx=30,pady=30)
+################################################################################################################################################################    
 def ventanatasaI():
     win = tk.Toplevel()
     win.geometry("700x700")
     win.configure(bg="lavender")
     win.iconbitmap(r'q5970meyn6ddojdz1wno81586489001_NEv_icon.ico')
-    e1 = tk.Label(win,text="Bienvenido al apartado para calcular la tasa de interes",bg="lavender",fg= "black",font = ("vernada", 20))
+    e1 = tk.Label(win,text="Bienvenido al apartado para calcular \n La tasa de intereses sobre intereses",bg="lavender",fg= "black",font = ("vernada", 20))
     e1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)
-    calcular=tk.Button(win,text="Calcular")
-    calcular.pack(side=tk.TOP)
-    
+    c1=tk.IntVar()
+    c2=tk.IntVar()
+    c3=tk.IntVar()
+    i1 = tk.Label(win,text="Ingrese el valor futuro: ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
+    e2=tk.Entry(win,textvariable=c1)
+    e2.pack(ipadx=5,ipady=5)
+    i1 = tk.Label(win,text="Ingrese el valor presente: ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
+    e3=tk.Entry(win,textvariable=c2)
+    e3.pack(ipadx=5,ipady=5)
+    i1 = tk.Label(win,text="Ingrese los meses a calcular: ",bg="royal blue",fg= "white",font = ("vernada", 12))
+    i1.pack(padx = 5,pady=10,ipadx=5,ipady=10,fill=tk.X)    
+    e4=tk.Entry(win,textvariable=c3)
+    e4.pack(ipadx=5,ipady=5)
+    def t_interes():
+        a = int(e2.get())
+        b = int(e3.get())
+        c = int(e4.get())
+        h=a/b
+        tasa = (h)**(1/c)-1
+        ti=tasa*100
+        e7=tk.Label(win,text="Tracurridos el tiempo que ingresó habra pagado en intereses: ",bg="royal blue",fg= "black",font = ("vernada", 15))
+        e7.pack(padx = 5,pady=10,ipadx=5,ipady=10)
+        e8=tk.Label(win,text=(ti,"%"), padx = 5,pady=10,width=50)
+        e8.pack()
+    calcular=tk.Button(win,text="Calcular",command=t_interes)
+    calcular.configure(font=30)
+    calcular.pack(side=tk.TOP,padx=30,pady=30)
 #===============================================================================================================================================================================================
 #                                    Etiquetas
 #===============================================================================================================================================================================================
-e1 = tk.Label(mainW,text="Acontinuación encontrará una serie de funcoines, escoja la que desea consultar",bg="royal blue",fg="white",font=15 )
+e1 = tk.Label(mainW,text="Esta no es una calculadora normal, aqui encontrá una calculadora"
+                          "financiera \n en la que podrá realizar diferentes operaciones enfocadas a el sector financiero, \n"
+                          "tambien encontrará una calculadora matematica con las operaciones \n tradicionales y ademas con otra funciones." 
+                          "\n A continuacion encontrará uns funciones, oprima la que desea consultar ",bg="royal blue",fg="white",font=17 )
 e1.pack(padx = 5,pady=5,ipadx=5,ipady=5,fill=tk.X)
     
 
 #===============================================================================================================================================================================================
 #                                 Menu desplegable 
 #===============================================================================================================================================================================================
-mb = tk.Menubutton(mainW,text="Funciones")
+mb = tk.Menubutton(mainW,text="Calculadora Financiera")
 mb.menu = tk.Menu(mb)
 mb["menu"] = mb.menu
 #Opciones
@@ -283,12 +403,14 @@ mb.menu.add_command(label="Pagar iva bimestral o cuatrimestralmente",command = v
 mb.menu.add_command(label="Consultas acerca del pago de la retención en la fuente",command = ventanaretencion )
 mb.menu.add_command(label="Saber si usted es declarante de renta",command = ventanarenta )
 mb.menu.add_command(label="Conocer el valor futuro",command = ventanavalorFuturo )
-mb.menu.add_command(label=" Obtener ganancia con un CDT",command = ventanaCDT )
+mb.menu.add_command(label="Conocer la tasa de interés compuesto",command = ventanatasaI)
+mb.menu.add_command(label="Obtener ganancia con un CDT",command = ventanaCDT )
 mb.menu.add_command(label="Conocer los intereses que debe pagar por un crédito",command = ventanaICredito )
-mb.menu.add_command(label="Conocer la tasa de interés",command = ventanatasaI )
 mb.configure(font=20)
 mb.pack(side=tk.TOP,padx=30,pady=30)
-
+calcular=tk.Button(mainW,text="Calculadora Matematica")
+calcular.pack(side=tk.TOP,padx=30,pady=30)
+calcular.configure(font=30)
 
 
 
